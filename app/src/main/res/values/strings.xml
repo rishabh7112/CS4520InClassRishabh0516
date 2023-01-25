@@ -3,4 +3,20 @@
     <string name="name_practiceButton">Practice</string>
     <string name="name_buttonLog">LogCat</string>
     <string name="name_buttonToast">Toast</string>
+    <string name="name_inclass1">In-Class 1</string>
+    <string name="name_BMI">Body Mass Index (BMI)</string>
+    <string name="name_weight">Weight</string>
+    <string name="name_weightEdit">Your Weight in Pounds</string>
+    <string name="name_lb">lb</string>
+    <string name="name_height">Height</string>
+    <string name="name_weighText" />
+    <string name="name_ft">feet</string>
+    <string name="hint_feet">feet</string>
+    <string name="hint_inches">inches</string>
+    <string name="name_inches">inches</string>
+    <string name="BMIButton">Calculate BMI</string>
+    <string name="ClickText">Click on Calculate BMI to find your BMI</string>
+    <string name="name_in">in</string>
+    <string name="name_feet">ft</string>
+    <string name="hint_weight">Weight</string>
 </resources>

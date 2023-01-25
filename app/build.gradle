@@ -3,6 +3,28 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/batman/Desktop/KeyStore/DAFKeystore2')
+            storePassword 'Batman_7112'
+            keyAlias 'key0'
+            keyPassword 'Batman_7112'
+        }
+
+//        debug {
+//            storeFile file('/Users/batman/Desktop/KeyStore/DAFKeystore')
+//            storePassword 'Batman_7112'
+//            keyAlias 'Key 0'
+//            keyPassword 'Batman_7112'
+//        }
+//
+//        release {
+//            storeFile file('/Users/batman/Desktop/KeyStore/DAFKeystore')
+//            storePassword 'Batman_7112'
+//            keyAlias 'Key1'
+//            keyPassword 'Batman_7112'
+//        }
+    }
     namespace 'com.example.cs4520_inclass_rishabh0516'
     compileSdk 33
 
