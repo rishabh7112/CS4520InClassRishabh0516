@@ -33,4 +33,5 @@
     <string name="email_text">Email: mark@abc.xyz</string>
     <string name="name_use2">I use Android!</string>
     <string name="name_mood3">I am Happy!</string>
+    <string name="string_mood">Your current mood: happy</string>
 </resources>

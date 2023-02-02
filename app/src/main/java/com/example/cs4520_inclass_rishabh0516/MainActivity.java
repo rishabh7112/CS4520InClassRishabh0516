@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.cs4520_inclass_rishabh0516.inClass01.InClass01;
+import com.example.cs4520_inclass_rishabh0516.inClass02.EditProfileActivity;
+
 public class MainActivity extends AppCompatActivity {
     private Button button_practice;
     private Button button_inclass1;

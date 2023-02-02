@@ -1,21 +1,18 @@
 // Rishabh Sahu
 // Assignment # 1
-package com.example.cs4520_inclass_rishabh0516;
-
-import static java.lang.Math.floor;
+package com.example.cs4520_inclass_rishabh0516.inClass01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.example.cs4520_inclass_rishabh0516.R;
+
 import java.text.DecimalFormat;
 
 public class InClass01 extends AppCompatActivity {
