@@ -5,15 +5,11 @@ package com.example.cs4520_inclass_rishabh0516.inClass02;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.cs4520_inclass_rishabh0516.R;
-
-import java.io.Serializable;
 
 public class SelectActivity extends AppCompatActivity {
 
@@ -29,7 +25,7 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
 
         setTitle("Select Avatar");
-        avatar1 = findViewById(R.id.avatar1);
+        avatar1 = findViewById(R.id.fragement_avatar1);
         avatar2 = findViewById(R.id.avatar2);
         avatar3 = findViewById(R.id.avatar3);
         avatar4 = findViewById(R.id.avatar4);

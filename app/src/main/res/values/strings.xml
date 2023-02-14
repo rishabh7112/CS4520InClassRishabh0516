@@ -34,4 +34,7 @@
     <string name="name_use2">I use Android!</string>
     <string name="name_mood3">I am Happy!</string>
     <string name="string_mood">Your current mood: happy</string>
+    <string name="inclass3_button">IN-CLASS 3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

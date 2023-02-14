@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.cs4520_inclass_rishabh0516.inClass03.EditProfile"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_fragmentHome_to_selectAvatar"
+            app:destination="@id/selectAvatar" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDisplay"
+            app:destination="@id/fragmentDisplay" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectAvatar"
+        android:name="com.example.cs4520_inclass_rishabh0516.inClass03.SelectAvatar"
+        android:label="fragment_select_avatar"
+        tools:layout="@layout/fragment_select_avatar" >
+        <action
+            android:id="@+id/action_selectAvatar_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDisplay"
+        android:name="com.example.cs4520_inclass_rishabh0516.inClass03.Display"
+        android:label="fragment_display"
+        tools:layout="@layout/fragment_display" />
+</navigation>

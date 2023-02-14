@@ -1,46 +1,19 @@
-// Rishabh Sahu
-// Assignment #2
-package com.example.cs4520_inclass_rishabh0516.inClass02;
+package com.example.cs4520_inclass_rishabh0516;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Profile implements Parcelable {
+public class ProfileFragment implements Parcelable {
     private String name;
     private String email;
     private String device;
     private String emotion;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setDevice(String device) {
-        this.device = device;
-    }
-
-    public void setEmotion(String emotion) {
-        this.emotion = emotion;
-    }
-
-    public void setAvatarId(int avatarId) {
-        this.avatarId = avatarId;
-    }
-
-    public void setMoodId(int moodId) {
-        this.moodId = moodId;
-    }
-
     private int avatarId;
     private int moodId;
 
-    public Profile(String name, String email, String device, String emotion, int avatarId, int moodId) {
+    public ProfileFragment(String name, String email, String device, String emotion, int avatarId, int moodId) {
         this.name = name;
         this.email = email;
         this.device = device;
@@ -49,7 +22,7 @@ public class Profile implements Parcelable {
         this.moodId = moodId;
     }
 
-    protected Profile(Parcel in) {
+    protected ProfileFragment(Parcel in) {
         name = in.readString();
         email = in.readString();
         device = in.readString();
@@ -58,15 +31,16 @@ public class Profile implements Parcelable {
         moodId = in.readInt();
     }
 
-    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
+
+    public static final Creator<ProfileFragment> CREATOR = new Creator<ProfileFragment>() {
         @Override
-        public Profile createFromParcel(Parcel in) {
-            return new Profile(in);
+        public ProfileFragment createFromParcel(Parcel in) {
+            return new ProfileFragment(in);
         }
 
         @Override
-        public Profile[] newArray(int size) {
-            return new Profile[size];
+        public ProfileFragment[] newArray(int size) {
+            return new ProfileFragment[size];
         }
     };
 
@@ -104,6 +78,30 @@ public class Profile implements Parcelable {
                 ", avatarId=" + avatarId +
                 ", moodId=" + moodId +
                 '}';
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public void setEmotion(String emotion) {
+        this.emotion = emotion;
+    }
+
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    public void setMoodId(int moodId) {
+        this.moodId = moodId;
     }
 
     @Override
