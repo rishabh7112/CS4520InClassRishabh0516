@@ -106,6 +106,9 @@ public class Profile implements Parcelable {
                 '}';
     }
 
+    public Profile() {
+    }
+
     @Override
     public int describeContents() {
         return 0;

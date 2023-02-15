@@ -113,6 +113,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:max="3"
+        android:min="0"
         android:progress="2"
         app:layout_constraintEnd_toStartOf="@+id/mood"
         app:layout_constraintStart_toStartOf="parent"

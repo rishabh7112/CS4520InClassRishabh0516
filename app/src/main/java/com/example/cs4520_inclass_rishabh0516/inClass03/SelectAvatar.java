@@ -11,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.cs4520_inclass_rishabh0516.ProfileFragment;
 import com.example.cs4520_inclass_rishabh0516.R;
 import com.example.cs4520_inclass_rishabh0516.inClass02.Profile;
-import com.example.cs4520_inclass_rishabh0516.inClass03.EditProfile;
 
 
 public class SelectAvatar extends Fragment {
-    private ImageButton fragement_avatar1;
+    private ImageButton avatar1;
     private ImageButton avatar2;
     private ImageButton avatar3;
     private ImageButton avatar4;
@@ -47,14 +45,14 @@ public class SelectAvatar extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_select_avatar, container, false);
         getActivity().setTitle("Select Avatar Fragment");
-        fragement_avatar1 = rootView.findViewById(R.id.fragement_avatar1);
+        avatar1 = rootView.findViewById(R.id.avatar1);
         avatar2 = rootView.findViewById(R.id.avatar2);
         avatar3 = rootView.findViewById(R.id.avatar3);
         avatar4 = rootView.findViewById(R.id.avatar4);
         avatar5 = rootView.findViewById(R.id.avatar5);
         avatar6 = rootView.findViewById(R.id.avatar6);
 
-        fragement_avatar1.setOnClickListener(new View.OnClickListener() {
+        avatar1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,36 @@ public class EditProfile extends Fragment {
             mood.setImageResource(profile.getMoodId());
             mood_text.setText(profile.getEmotion());
             imageButton.setImageResource(profile.getAvatarId());
+
+            if(profile.getEmotion() == null) {
+                profile.setEmotion("Your current mood: happy");
+                profile.setMoodId(R.drawable.happy);
+                mood.setImageResource(profile.getMoodId());
+                mood_text.setText(profile.getEmotion());
+            }
+
+            if (profile.getDevice() != null && profile.getDevice().equals("I use Android!")) {
+                radio_group.check(R.id.androidButton);
+            }
+            if (profile.getDevice() != null && profile.getDevice().equals("I use iOS!")) {
+                radio_group.check(R.id.iosButton);
+            }
+
+            if (profile.getDevice() != null && profile.getEmotion().equals("I am angry!")) {
+                moodBar.setProgress(0);
+            }
+
+            if (profile.getDevice() != null && profile.getEmotion().equals("I am sad!")) {
+                moodBar.setProgress(1);
+            }
+
+            if (profile.getDevice() != null && profile.getEmotion().equals("I am happy!")) {
+                moodBar.setProgress(2);
+            }
+
+            if (profile.getDevice() != null && profile.getEmotion().equals("I am awesome!")) {
+                moodBar.setProgress(3);
+            }
         }
     }
 
@@ -101,7 +132,8 @@ public class EditProfile extends Fragment {
 
 
         profile = new Profile(textName.getText().toString(), textEmail.getText().toString(), device_selected, mood2, avatar, moodId);
-
+        profile.setMoodId(R.drawable.happy);
+        profile.setEmotion("Your current mood: happy");
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -196,10 +228,6 @@ public class EditProfile extends Fragment {
                 }
             }
         });
-
-
-
-
 
 
         return rootView;

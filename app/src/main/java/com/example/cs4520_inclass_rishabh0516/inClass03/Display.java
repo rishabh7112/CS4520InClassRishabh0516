@@ -51,12 +51,14 @@ public class Display extends Fragment {
         moodtext = rootView.findViewById(R.id.moodtext);
         mood3 = rootView.findViewById(R.id.mood3);
 
-        //imageView.setImageDrawable(getActivity().getDrawable(profile.getAvatarId()));
+
+        imageView.setImageResource(profile.getAvatarId());
         nameText.setText(profile.getName());
         emailText.setText(profile.getEmail());
         useText.setText(profile.getDevice());
         moodtext.setText(profile.getEmotion());
-        //mood3.setImageDrawable(getActivity().getDrawable(profile.getMoodId()));
+        mood3.setImageResource(profile.getMoodId());
+
 
         return rootView;
     }

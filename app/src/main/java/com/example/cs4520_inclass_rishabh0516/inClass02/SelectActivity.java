@@ -25,7 +25,7 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
 
         setTitle("Select Avatar");
-        avatar1 = findViewById(R.id.fragement_avatar1);
+        avatar1 = findViewById(R.id.avatar1);
         avatar2 = findViewById(R.id.avatar2);
         avatar3 = findViewById(R.id.avatar3);
         avatar4 = findViewById(R.id.avatar4);
