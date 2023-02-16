@@ -1,4 +1,8 @@
+// Rishabh Sahu
+// Assignment 4
+
 package com.example.cs4520_inclass_rishabh0516.inClass04;
+
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +17,11 @@ public class HeavyWork implements Runnable {
     public final static int STATUS_ARRAY = 0x007;
     public final static String KEY_PROGRESS = "0x004";
     public final static String KEY_ARRAY = "0x008";
+    public final static int STATUS_START = 0x001;
+    public final static int STATUS_END = 0x003;
+    public final static String KEY_START = "0x009";
+    public final static String KEY_END = "0x011";
+
 
     private int complexity;
     private Handler messageQueue;
@@ -27,6 +36,9 @@ public class HeavyWork implements Runnable {
     static final int COUNT = 9000000;
     private ArrayList<Double> getArrayNumbers(int n){
         ArrayList<Double> returnArray = new ArrayList<>();
+        Message startMessage = new Message();
+        startMessage.what = STATUS_START;
+        messageQueue.sendMessage(startMessage);
         for (int i=0; i<n; i++){
             returnArray.add(getNumber());
             Message progressMessage = new Message();
@@ -35,8 +47,11 @@ public class HeavyWork implements Runnable {
             bundle.putInt(KEY_PROGRESS, i);
             progressMessage.setData(bundle);
             messageQueue.sendMessage(progressMessage);
-
         }
+
+        Message endMessage = new Message();
+        endMessage.what = STATUS_END;
+        messageQueue.sendMessage(endMessage);
 
         return returnArray;
     }
@@ -54,14 +69,12 @@ public class HeavyWork implements Runnable {
     public void run() {
         Message arrayMessage = new Message();
         arrayMessage.what = STATUS_ARRAY;
-
         ArrayList<Double> numbers = getArrayNumbers(this.complexity);
         double[] arrayNumbers  = numbers.stream().mapToDouble(j -> j).toArray();
         Bundle bundle = new Bundle();
         bundle.putDoubleArray(KEY_ARRAY, arrayNumbers);
         arrayMessage.setData(bundle);
         messageQueue.sendMessage(arrayMessage);
-
 
     }
 

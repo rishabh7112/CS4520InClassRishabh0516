@@ -1,3 +1,6 @@
+// Rishabh Sahu
+// Assignment 4
+
 package com.example.cs4520_inclass_rishabh0516.inClass04;
 
 import androidx.annotation.NonNull;
@@ -51,6 +54,12 @@ public class InClass04 extends AppCompatActivity {
             @Override
             public boolean handleMessage(@NonNull Message message) {
                 switch(message.what){
+                    case HeavyWork.STATUS_START:
+                        progressBar.setVisibility(View.VISIBLE);
+                        break;
+                    case HeavyWork.STATUS_END:
+                        progressBar.setVisibility(View.INVISIBLE);
+                        break;
                     case HeavyWork.STATUS_PROGRESS:
                         Bundle receivedData = message.getData();
                         int progress = receivedData.getInt(HeavyWork.KEY_PROGRESS);
