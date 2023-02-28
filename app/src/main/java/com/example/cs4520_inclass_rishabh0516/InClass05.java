@@ -58,10 +58,12 @@ public class InClass05 extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         this.baseUrlSearch = "http://ec2-54-164-201-39.compute-1.amazonaws.com/apis/images/retrieve";
+        previous.setClickable(false);
+        next.setClickable(false);
         button_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(internetConnectionAvailable(100)) {
+                if(!internetConnectionAvailable(1000)) {
                     Toast.makeText(InClass05.this, "No Internet Connection",Toast.LENGTH_LONG).show();
                 }
                 loading.setVisibility(View.VISIBLE);
@@ -73,7 +75,7 @@ public class InClass05 extends AppCompatActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(internetConnectionAvailable(100)) {
+                if(!internetConnectionAvailable(1000)) {
                     Toast.makeText(InClass05.this, "No Internet Connection",Toast.LENGTH_LONG).show();
                 }
                 if(counter == 0) {
@@ -94,7 +96,7 @@ public class InClass05 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(internetConnectionAvailable(100)) {
+                if(!internetConnectionAvailable(1000)) {
                     Toast.makeText(InClass05.this, "No Internet Connection",Toast.LENGTH_LONG).show();
                 }
                 if(counter == responseList.size() - 1) {
@@ -110,7 +112,6 @@ public class InClass05 extends AppCompatActivity {
                 loading.setVisibility(View.INVISIBLE);
             }
         });
-
     }
 
     private void updateImage(String imageLink) {
@@ -162,7 +163,7 @@ public class InClass05 extends AppCompatActivity {
                         @Override
                         public void run() {
                             images.setVisibility(View.INVISIBLE);
-                            Toast.makeText(InClass05.this, "Invalid keyword",Toast.LENGTH_LONG).show();
+                            Toast.makeText(InClass05.this, "No images found",Toast.LENGTH_LONG).show();
                         }
                     });
                 }
