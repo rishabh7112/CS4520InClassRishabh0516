@@ -1,3 +1,5 @@
+// Rishabh Sahu
+// Assignment 5
 package com.example.cs4520_inclass_rishabh0516;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +48,7 @@ public class InClass05 extends AppCompatActivity {
     private ProgressBar loading;
     private ImageButton previous;
     private ImageButton next;
+    private TextView loadingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class InClass05 extends AppCompatActivity {
         loading = findViewById(R.id.loading);
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
+        loadingText = findViewById(R.id.loadingText);
         this.baseUrlSearch = "http://ec2-54-164-201-39.compute-1.amazonaws.com/apis/images/retrieve";
         previous.setClickable(false);
         next.setClickable(false);
@@ -67,7 +72,9 @@ public class InClass05 extends AppCompatActivity {
                     Toast.makeText(InClass05.this, "No Internet Connection",Toast.LENGTH_LONG).show();
                 }
                 loading.setVisibility(View.VISIBLE);
+                loadingText.setVisibility(View.VISIBLE);
                 loadImage();
+                loadingText.setVisibility(View.INVISIBLE);
                 loading.setVisibility(View.INVISIBLE);
             }
         });
@@ -85,7 +92,10 @@ public class InClass05 extends AppCompatActivity {
                 loading.setVisibility(View.VISIBLE);
                 previous.setClickable(false);
                 next.setClickable(false);
+                loadingText.setText("Loading previous...");
+                loadingText.setVisibility(View.VISIBLE);
                 loadImage();
+                loadingText.setVisibility(View.INVISIBLE);
                 previous.setClickable(true);
                 next.setClickable(true);
                 loading.setVisibility(View.INVISIBLE);
@@ -106,7 +116,10 @@ public class InClass05 extends AppCompatActivity {
                 loading.setVisibility(View.VISIBLE);
                 previous.setClickable(false);
                 next.setClickable(false);
+                loadingText.setText("Loading next...");
+                loadingText.setVisibility(View.VISIBLE);
                 loadImage();
+                loadingText.setVisibility(View.INVISIBLE);
                 previous.setClickable(true);
                 next.setClickable(true);
                 loading.setVisibility(View.INVISIBLE);
@@ -159,6 +172,7 @@ public class InClass05 extends AppCompatActivity {
                         }
                     });
                 }else{
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
