@@ -46,4 +46,6 @@
     <string name="max_name">Maximum:</string>
     <string name="average_name">Average:</string>
     <string name="generate_name">Generate Number</string>
+    <string name="inclass5_button">IN-CLASS 5</string>
+    <string name="go_button">GO</string>
 </resources>
