@@ -49,4 +49,10 @@
     <string name="inclass5_button">IN-CLASS 5</string>
     <string name="go_button">GO</string>
     <string name="loadingtext">Loading...</string>
+    <string name="news_text">News</string>
+    <string name="country_text">Country</string>
+    <string name="category_text">Category</string>
+    <string name="submit_button">Submit</string>
+    <string name="result_name">Results:</string>
+    <string name="button_inclass6">IN-CLASS 6</string>
 </resources>

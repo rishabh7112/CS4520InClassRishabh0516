@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.cs4520_inclass_rishabh0516.ProfileFragment;
 import com.example.cs4520_inclass_rishabh0516.R;
 import com.example.cs4520_inclass_rishabh0516.inClass02.Profile;
 

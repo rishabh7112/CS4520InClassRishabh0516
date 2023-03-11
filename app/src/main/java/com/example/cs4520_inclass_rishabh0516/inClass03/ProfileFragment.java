@@ -1,4 +1,4 @@
-package com.example.cs4520_inclass_rishabh0516;
+package com.example.cs4520_inclass_rishabh0516.inClass03;
 
 import android.os.Parcel;
 import android.os.Parcelable;
