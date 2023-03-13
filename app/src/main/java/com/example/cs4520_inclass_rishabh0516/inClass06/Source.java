@@ -1,18 +1,20 @@
 package com.example.cs4520_inclass_rishabh0516.inClass06;
 
+// Rishabh Sahu
+// Assignment #6
 public class Source {
-    private int id;
+    private String id;
     private String name;
 
     public Source() {
     }
 
-    public Source(int id, String name) {
+    public Source(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -20,7 +22,7 @@ public class Source {
         return name;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.example.cs4520_inclass_rishabh0516.R;
 import com.example.cs4520_inclass_rishabh0516.inClass02.EditProfileActivity;
 
+// Rishabh Sahu
+// Assignment #6
 public class NewsFilter extends Fragment {
     private Button submit;
     private Spinner country_spinner;

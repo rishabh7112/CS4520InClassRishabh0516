@@ -1,5 +1,8 @@
 package com.example.cs4520_inclass_rishabh0516.inClass06;
 
+// Rishabh Sahu
+// Assignment #6
+
 import java.util.ArrayList;
 
 public class APIResponse {

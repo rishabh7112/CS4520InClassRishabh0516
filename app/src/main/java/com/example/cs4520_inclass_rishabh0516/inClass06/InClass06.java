@@ -1,4 +1,6 @@
 package com.example.cs4520_inclass_rishabh0516.inClass06;
+// Rishabh Sahu
+// Assignment #6
 
 import androidx.appcompat.app.AppCompatActivity;
 

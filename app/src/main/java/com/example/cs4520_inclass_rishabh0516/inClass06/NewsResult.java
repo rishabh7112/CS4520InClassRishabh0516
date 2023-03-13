@@ -1,6 +1,5 @@
 package com.example.cs4520_inclass_rishabh0516.inClass06;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,16 +9,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.cs4520_inclass_rishabh0516.R;
+import com.example.cs4520_inclass_rishabh0516.inClass05.InClass05;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,14 +31,24 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+// Rishabh Sahu
+// Assignment #6
+
 public class NewsResult extends Fragment {
     private String country, category;
-    private ListView newsList;
     private final OkHttpClient client = new OkHttpClient();
     private String baseUrlSearch;
     private APIResponse apiResponse;
     private ArrayList<Article> articles;
-    private ArrayAdapter<Article> adapter;
+    private ImageButton prev;
+    private ImageButton forward;
+    private TextView news_text;
+    private ImageView news_image;
+    private ArrayList<String> images;
+    private int counter = 0;
+
+
+    private ArrayList<FormatArticle> validArticles;
 
     public NewsResult() {
         // Required empty public constructor
@@ -56,21 +69,48 @@ public class NewsResult extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_result, container, false);
-        newsList = rootView.findViewById(R.id.newsList);
+        prev = rootView.findViewById(R.id.prev);
+        forward = rootView.findViewById(R.id.forward);
+        news_text = rootView.findViewById(R.id.news_text);
+        news_image = rootView.findViewById(R.id.news_image);
+
         this.baseUrlSearch = "https://newsapi.org/v2/top-headlines?apiKey=a10ca305082748f58574035dc287cca1";
 
         getNews();
-        /**
-        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, articles);
-        newsList.setAdapter(adapter);
-         **/
+
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(counter == 0) {
+                    counter = validArticles.size();
+                }
+                counter -= 1;
+                prev.setClickable(false);
+                forward.setClickable(false);
+                getNews();
+                prev.setClickable(true);
+                forward.setClickable(true);
+            }
+        });
+
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(counter == validArticles.size() - 1) {
+                    counter = -1;
+                }
+                counter += 1;
+                prev.setClickable(false);
+                forward.setClickable(false);
+                getNews();
+                prev.setClickable(true);
+                forward.setClickable(true);
+            }
+        });
         return rootView;
     }
 
     private void getNews(){
-        Log.d("demo", country);
-        Log.d("demo", category);
-
         HttpUrl url = HttpUrl.parse(baseUrlSearch)
                 .newBuilder()
                 .addQueryParameter("country", country)
@@ -88,16 +128,44 @@ public class NewsResult extends Fragment {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if(response.isSuccessful()){
-                    Log.d("demo", response.body().string());
+                    String jsonData = response.body().string();
                     Gson gsonData = new Gson();
-                    apiResponse =  gsonData.fromJson(response.body().charStream(), APIResponse.class);
+                    apiResponse =  gsonData.fromJson(jsonData, APIResponse.class);
                     articles = apiResponse.getArticles();
+                    response.body().close();
+                    validArticles = new ArrayList<FormatArticle>();
+                    images = new ArrayList<String>();
+                    for(Article article: articles) {
+                        FormatArticle validArticle = new FormatArticle(article.getAuthor(), article.getTitle(), article.getDescription(), article.getUrlToImage(), article.getPublishedAt());
+                        validArticles.add(validArticle);
+                        images.add(validArticle.getUrlToImage());
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            news_text.setText(validArticles.get(counter).toString());
+                            updateImage(images.get(counter));
+
+                        }
+                    });
+
+
 
                 }else{
-                    Log.d("demo", "onResponse: "+response.body().string());
 
                 }
             }
         });
     }
+
+    private void updateImage(String imageLink) {
+        Glide.with(getActivity())
+                .load(imageLink)
+                .into(news_image);
+    }
+
+
+
+
 }
