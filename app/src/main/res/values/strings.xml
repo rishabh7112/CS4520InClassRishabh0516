@@ -55,4 +55,22 @@
     <string name="submit_button">Submit</string>
     <string name="result_name">Results:</string>
     <string name="button_inclass6">IN-CLASS 6</string>
+    <string name="inclass8">IN-CLASS 8</string>
+    <string name="dontAccount">Don\'t have an account?</string>
+    <string name="message" />
+    <string name="message_str">Message</string>
+    <string name="name_str">Name:</string>
+    <string name="Signout">Sign Out</string>
+    <string name="name3">Name</string>
+    <string name="email3">Email</string>
+    <string name="add">Add</string>
+    <string name="messagestr">Enter</string>
+    <string name="Message" />
+    <string name="messagebutton">Send</string>
+    <string name="textmessage2">Message</string>
+    <string name="profilphoto">Click below to take photo for your profile:</string>
+    <string name="registerval">Register</string>
+    <string name="repeat">Repeat Password</string>
+    <string name="editprofile">Edit Profile</string>
+    <string name="iinib">Upload</string>
 </resources>
