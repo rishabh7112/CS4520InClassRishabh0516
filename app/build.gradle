@@ -77,13 +77,13 @@ dependencies {
     implementation "com.google.code.gson:gson:2.9.0"
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
 
-    def camerax_version = "1.1.0-alpha12"
-    implementation "androidx.camera:camera-core:${camerax_version}"
-    implementation "androidx.camera:camera-camera2:${camerax_version}"
-    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
-    implementation "androidx.camera:camera-view:1.0.0-alpha35"
-    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
+    def camerax_version = "1.1.0-alpha10"
+    implementation "androidx.camera:camera-core:$camerax_version"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha30"
 
     // Add the dependency for the Cloud Storage library
     // When using the BoM, you don't specify versions in Firebase library dependencies

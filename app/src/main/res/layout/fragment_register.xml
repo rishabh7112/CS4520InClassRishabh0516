@@ -9,17 +9,17 @@
 
     <Button
         android:id="@+id/buttonRegister2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="106dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#FF6F00"
         android:text="@string/registerval"
         android:textAllCaps="false"
         android:textColor="#263238"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/profileButton"
-        app:layout_constraintStart_toStartOf="@+id/profileButton"
-        app:layout_constraintTop_toBottomOf="@+id/profileButton" />
+        app:layout_constraintEnd_toEndOf="@+id/repeatPassword"
+        app:layout_constraintStart_toStartOf="@+id/repeatPassword"
+        app:layout_constraintTop_toBottomOf="@+id/repeatPassword" />
 
     <EditText
         android:id="@+id/repeatPassword"
@@ -104,28 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/profileButton"
-        android:layout_width="317dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/iinib"
-        android:src="@android:drawable/ic_menu_camera"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/profilphoto"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatPassword" />
-
+    <!-- Add this inside your ConstraintLayout, adjust constraints and dimensions as needed -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

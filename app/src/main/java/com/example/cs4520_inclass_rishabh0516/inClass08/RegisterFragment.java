@@ -1,34 +1,64 @@
 package com.example.cs4520_inclass_rishabh0516.inClass08;
+// Rishabh Sahu
+// Assignment #8
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.view.video.Metadata;
+import androidx.camera.view.video.OutputFileOptions;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.cs4520_inclass_rishabh0516.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import androidx.camera.view.PreviewView;
+import com.google.firebase.storage.FirebaseStorage;
 
 
-public class RegisterFragment extends Fragment implements View.OnClickListener {
+
+
+
+public class RegisterFragment extends Fragment implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -38,6 +68,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private String firstname, lastname, username, email_str, password_str, rep_password;
     private IregisterFragmentAction mListener;
     private FirebaseFirestore firestore;
+    // Add this to the class
+    private PreviewView previewView;
+    private ImageCapture imageCapture;
+    private ImageButton profileButton;
+    private Bitmap profileImageBitmap;
+    private File photoFileLocation;
+    private FirebaseStorage storage;
+    private ActivityResultLauncher<Intent> galleryLauncher;
 
     public RegisterFragment() {
     }
@@ -55,6 +93,27 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+
+        // Initialize galleryLauncher
+        galleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            Uri selectedImageUri = data.getData();
+                            FragmentDisplayImage fragmentDisplayImage = FragmentDisplayImage.newInstance(selectedImageUri);
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.container, fragmentDisplayImage)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    }
+                }
+        );
     }
 
     @Override
@@ -67,6 +126,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     + "must implement RegisterRequest");
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +144,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
+
     @Override
     public void onClick(View view) {
         this.firstname = String.valueOf(first_name.getText()).trim();
@@ -93,44 +154,44 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         this.password_str = String.valueOf(password.getText()).trim();
         this.rep_password = String.valueOf(repeatPassword.getText()).trim();
 
-        if(view.getId()== R.id.buttonRegister2) {
-            if(first_name.equals("")){
+        if (view.getId() == R.id.buttonRegister2) {
+            if (first_name.equals("")) {
                 first_name.setError("Must input first name!");
             }
 
-            if(last_name.equals("")){
+            if (last_name.equals("")) {
                 last_name.setError("Must input last name!");
             }
 
-            if(username.equals("")){
+            if (username.equals("")) {
                 display_name.setError("Must input last name!");
             }
 
-            if(email_str.equals("")){
+            if (email_str.equals("")) {
                 email.setError("Must input email!");
             }
-            if(password_str.equals("")){
+            if (password_str.equals("")) {
                 password.setError("Password must not be empty!");
             }
 
-            if(password_str.length() < 8){
+            if (password_str.length() < 8) {
                 password.setError("Password must not be at least 8 characters long!");
             }
 
-            if(!rep_password.equals(password_str)){
+            if (!rep_password.equals(password_str)) {
                 repeatPassword.setError("Passwords must match!");
             }
 
-            if(!firstname.equals("") && !lastname.equals("") && !username.equals("")
+            if (!firstname.equals("") && !lastname.equals("") && !username.equals("")
                     && !email_str.equals("")
                     && !password_str.equals("")
-                    && rep_password.equals(password_str)){
+                    && rep_password.equals(password_str)) {
 
                 mAuth.createUserWithEmailAndPassword(email_str, password_str)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     mUser = task.getResult().getUser();
 
 //                                    Adding name to the FirebaseUser...
@@ -142,7 +203,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
+                                                    if (task.isSuccessful()) {
                                                         // Prepare user data for Firestore
                                                         Map<String, Object> userData = new HashMap<>();
                                                         userData.put("first_name", firstname);
@@ -180,6 +241,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             }
         }
     }
+
+
 
     public interface IregisterFragmentAction {
         void registerDone(FirebaseUser mUser);

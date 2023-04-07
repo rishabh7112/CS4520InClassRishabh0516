@@ -1,4 +1,6 @@
 package com.example.cs4520_inclass_rishabh0516.inClass08;
+// Rishabh Sahu
+// Assignment #8
 
 public class User {
     private String email;

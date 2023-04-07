@@ -73,4 +73,9 @@
     <string name="repeat">Repeat Password</string>
     <string name="editprofile">Edit Profile</string>
     <string name="iinib">Upload</string>
+    <string name="capture">capture</string>
+    <string name="gallery">gallery</string>
+    <string name="flipcamera">Flip Camera</string>
+    <string name="Gallery">gallery</string>
+    <string name="take_photo">take_photo</string>
 </resources>
